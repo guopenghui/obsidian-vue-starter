@@ -15,7 +15,7 @@ export class OutlineView extends ItemView {
         return "Quiet Outline"
     }
     getIcon(): string{
-        return "lines-of-text"
+        return "logo-crystal"
     }
     async onOpen(this:OutlineView) {
         const container = this.containerEl.children[1];
