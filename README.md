@@ -20,6 +20,4 @@ If above steps work, you can turn on 'Vue Template' plugin in Obsidian. Click th
 
 ## Notice
 
-+ Currently, styles are not supported in SFCs(`.vue` files), you should directly write CSS in `styles.css` file.
-
 + [hot-reload](https://forum.obsidian.md/t/plugin-release-for-developers-hot-reload-the-plugin-s-youre-developing/12185) plugin may be very helpful in your developing. It reloads the plugin whose `main.js` file changes, so you don't need do it yourself every time you make changes to code.
