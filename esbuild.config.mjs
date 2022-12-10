@@ -1,7 +1,7 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from 'builtin-modules';
-import Vue from "./plugins/esbuild-vue3-jsx.mjs";
+import Vue from "@the_tree/esbuild-plugin-vue3";
 
 const banner =
     `/*
@@ -13,9 +13,6 @@ if you want to view the source, please visit the github repository of this plugi
 const prod = (process.argv[2] === 'production');
 process.env.NODE_ENV = 'production';
 await esbuild.build({
-    define: {
-        "process.env.NODE_ENV": "'production'"
-    },
     banner: {
         js: banner,
     },
