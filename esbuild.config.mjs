@@ -1,8 +1,6 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from 'builtin-modules';
-// import vue from 'esbuild-plugin-vue3';
-// import vueTsx from "unplugin-vue-jsx/esbuild";
 import Vue from "./plugins/esbuild-vue3-jsx.mjs";
 
 const banner =

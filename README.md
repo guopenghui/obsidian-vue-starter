@@ -9,7 +9,7 @@
    + vue3 sfc support
    + vue3 tsx support
    + typescript
-   + esbuild-plugin-vue3: let esbuild get the power to compile `.vue` files.
+   + esbuild
 
 3. Run `npm run dev` to compile code and generate a `main.js`, which is the final output. Your `main.js` will be updated simultaneously with the change of your source code files.
 
