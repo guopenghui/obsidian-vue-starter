@@ -20,6 +20,12 @@
   },
   "include": [
     "**/*.ts",
+    "**/*.tsx",
     "**/*.vue"
-  ]
+  ],
+  "vueCompilerOptions": {
+    "target": 3,
+    "jsxTemplates": true,
+    "experimentalRfc436": true,
+  }
 }

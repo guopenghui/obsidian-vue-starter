@@ -1,8 +1,9 @@
 import esbuild from "esbuild";
 import process from "process";
-import builtins from 'builtin-modules'
-import vue from 'esbuild-plugin-vue3'
-import vueJsx from 'esbuild-plugin-vue-jsx'
+import builtins from 'builtin-modules';
+// import vue from 'esbuild-plugin-vue3';
+// import vueTsx from "unplugin-vue-jsx/esbuild";
+import Vue from "./plugins/esbuild-vue3-jsx.mjs";
 
 const banner =
     `/*
@@ -12,12 +13,17 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = (process.argv[2] === 'production');
-
+process.env.NODE_ENV = 'production';
 await esbuild.build({
+    define: {
+        "process.env.NODE_ENV": "'production'"
+    },
     banner: {
         js: banner,
     },
-    plugins: [vue(), vueJsx({})],
+    plugins: [
+        Vue({ isProd: true })
+    ],
     entryPoints: ['./src/main.ts'],
     bundle: true,
     external: [
@@ -62,4 +68,4 @@ await esbuild.build({
     bundle: true,
     allowOverwrite: true,
     minify: false,
-})
+});

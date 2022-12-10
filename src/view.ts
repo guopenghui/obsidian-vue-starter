@@ -1,31 +1,34 @@
-import { ItemView, WorkspaceLeaf } from 'obsidian'
-import { createApp } from 'vue'
-import App from './App.vue'
+import { ItemView, WorkspaceLeaf } from 'obsidian';
+import { createApp, App as VueApp } from 'vue';
+import App from './App.vue';
 
-export const VIEW_TYPE: string = 'my-view'
+export const VIEW_TYPE: string = 'my-view';
 
 export class MyView extends ItemView {
+    vueapp: VueApp;
     constructor(leaf: WorkspaceLeaf) {
-        super(leaf)
+        super(leaf);
     }
     getViewType(): string {
-        return VIEW_TYPE
+        return VIEW_TYPE;
     }
     getDisplayText(): string {
-        return "Vue Stater"
+        return "Vue Stater";
     }
     getIcon(): string {
-        return "dice"
+        return "dice";
     }
     async onOpen() {
         const container = this.containerEl.children[1];
         container.empty();
         container.createEl("div", {
             cls: "my-plugin-view"
-        })
-        createApp(App).mount('.my-plugin-view')
+        });
+        this.vueapp = createApp(App);
+        this.vueapp.mount('.my-plugin-view');
     }
     async onClose() {
+        this.vueapp.unmount();
 
     }
 

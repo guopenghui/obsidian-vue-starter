@@ -6,7 +6,8 @@
 1. Clone this repository to your `.obsidian\plugins` directory, and move into it.
 
 2. Run `npm install` to install all the stuff you need, Including: 
-   + vue3
+   + vue3 sfc support
+   + vue3 tsx support
    + typescript
    + esbuild-plugin-vue3: let esbuild get the power to compile `.vue` files.
 
