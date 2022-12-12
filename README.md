@@ -15,7 +15,7 @@
 
 If above steps work, you can turn on 'Vue Template' plugin in Obsidian. Click the *dice* like button on the left ribbon, a new tab will open on the right and says *"Hello,Developer!"*.
 
-4. When you get ready to build a release, run `npm run build` to create it.
+4. When you get ready to build a release, run `npm run build` to create it. This will remove all codemaps and minify code size.
 
 
 

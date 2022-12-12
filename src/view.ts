@@ -29,7 +29,6 @@ export class MyView extends ItemView {
     }
     async onClose() {
         this.vueapp.unmount();
-
     }
 
 }
