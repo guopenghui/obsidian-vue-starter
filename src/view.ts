@@ -21,11 +21,12 @@ export class MyView extends ItemView {
     async onOpen() {
         const container = this.containerEl.children[1];
         container.empty();
-        container.createEl("div", {
+        let content = container.createEl("div", {
             cls: "my-plugin-view"
         });
+
         this.vueapp = createApp(App);
-        this.vueapp.mount('.my-plugin-view');
+        this.vueapp.mount(content);
     }
     async onClose() {
         this.vueapp.unmount();
