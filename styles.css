@@ -1,7 +1,9 @@
-/* src/stalin.css */
-/* main.css */
-h2[data-v-f8994186] {
-  color: lightcoral;
-}
 
-/* src/main.css */
+h2[data-v-47932ae9] {
+    color: lightcoral;
+}
+/* You can write your own CSS here */
+.my-plugin-view {
+    color: cornflowerblue;
+}
+/*$vite$:1*/

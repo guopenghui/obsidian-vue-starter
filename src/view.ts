@@ -1,13 +1,16 @@
 import { ItemView, WorkspaceLeaf } from 'obsidian';
-import { createApp, App as VueApp } from 'vue';
+import { createApp, type App as VueApp } from 'vue';
 import App from './App.vue';
+import type MyPlugin from './main';
 
 export const VIEW_TYPE: string = 'my-view';
 
 export class MyView extends ItemView {
-    vueapp: VueApp;
-    constructor(leaf: WorkspaceLeaf) {
+    vueApp!: VueApp;
+    plugin: MyPlugin;
+    constructor(leaf: WorkspaceLeaf, plugin: MyPlugin) {
         super(leaf);
+        this.plugin = plugin;
     }
     getViewType(): string {
         return VIEW_TYPE;
@@ -25,11 +28,11 @@ export class MyView extends ItemView {
             cls: "my-plugin-view"
         });
 
-        this.vueapp = createApp(App);
-        this.vueapp.mount(content);
+        this.vueApp = createApp(App);
+        this.vueApp.provide("name", this.plugin.settings.myName);
+        this.vueApp.mount(content);
     }
     async onClose() {
-        this.vueapp.unmount();
+        this.vueApp.unmount();
     }
-
 }

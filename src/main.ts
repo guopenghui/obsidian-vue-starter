@@ -1,42 +1,29 @@
-import {
-    App,
-    Modal,
-    Notice,
-    Plugin,
-    PluginSettingTab,
-    Setting
-} from 'obsidian';
+import { Plugin } from "obsidian";
 
-import { MyView, VIEW_TYPE } from './view'
-
-
-interface MyPluginSettings {
-    mySetting: string;
-}
-
-const DEFAULT_SETTINGS: MyPluginSettings = {
-    mySetting: 'default'
-}
+import { type MyPluginSettings, DEFAULT_SETTINGS, MyPluginSettingsTab } from "./settings";
+import { MyView, VIEW_TYPE } from "./view";
+import "./main.css";
 
 export default class MyPlugin extends Plugin {
-    settings: MyPluginSettings;
+    settings!: MyPluginSettings;
 
     async onload() {
         await this.loadSettings();
+        this.addSettingTab(new MyPluginSettingsTab(this));
 
         this.registerView(
             VIEW_TYPE,
-            (leaf) => new MyView(leaf)
-        )
+            (leaf) => new MyView(leaf, this)
+        );
 
-        this.addRibbonIcon('dice', 'Open my view', (evt) => {
-            this.activateView()
-        })
+        this.addRibbonIcon('dice', 'Open my view', () => {
+            this.activateView();
+        });
 
     }
 
     onunload() {
-        this.app.workspace.detachLeavesOfType(VIEW_TYPE)
+        this.app.workspace.detachLeavesOfType(VIEW_TYPE);
     }
 
     async loadSettings() {
@@ -48,16 +35,14 @@ export default class MyPlugin extends Plugin {
     }
     async activateView() {
         if (this.app.workspace.getLeavesOfType(VIEW_TYPE).length === 0) {
-            await this.app.workspace.getRightLeaf(false).setViewState({
+            await this.app.workspace.getRightLeaf(false)?.setViewState({
                 type: VIEW_TYPE,
                 active: true,
-            })
+            });
         }
 
         this.app.workspace.revealLeaf(
             this.app.workspace.getLeavesOfType(VIEW_TYPE)[0]
-        )
+        );
     }
 }
-
-
